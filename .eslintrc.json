@@ -4,6 +4,7 @@
         "es2021": true
     },
     "extends": [
+        "eslint:recommended",
         "plugin:react/recommended",
         "standard-with-typescript",
         "plugin:@typescript-eslint/recommended",
@@ -24,7 +25,8 @@
     ],
     "rules": {
       "react/react-in-jsx-scope": "off",
-      "@typescript-eslint/consistent-type-definitions": "off"
+      "@typescript-eslint/consistent-type-definitions": "off",
+      "@typescript-eslint/strict-boolean-expressions": "off"
     },
     "settings": {
       "import/resolver": {

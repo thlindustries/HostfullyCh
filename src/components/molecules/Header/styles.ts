@@ -9,7 +9,6 @@ export const Container = styled.div<ContainerProps>`
   position: sticky;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   align-items: center;
 
   width: 100%;
@@ -42,6 +41,7 @@ export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
+  width: 20%;
 
   color: ${({ theme }) => theme.colors.colorWhite};
 
@@ -63,3 +63,12 @@ export const LogoContainer = styled.div`
     opacity: 0.4;
   }
 `;
+
+export const OptionsContainer = styled.div`
+  display: flex;
+  width: 45%;
+  justify-content: space-between;
+  margin-left: auto;
+`;
+
+export const ThemeChangerContainer = styled.div``;

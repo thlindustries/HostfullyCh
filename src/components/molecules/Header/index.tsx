@@ -5,11 +5,20 @@ import {
   MdOutlineUpdate,
 } from 'react-icons/md';
 import { AiFillHome, AiFillSchedule } from 'react-icons/ai';
+import { BiSun, BiMoon } from 'react-icons/bi';
 
 import { HamburguerMenu } from './HamburguerMenu';
 import { ExpandedMenu } from './ExpandedMenu';
 
-import { Container, LogoContainer } from './styles';
+import { Toggle } from 'components/atoms/Toggle';
+
+import {
+  Container,
+  LogoContainer,
+  OptionsContainer,
+  ThemeChangerContainer,
+} from './styles';
+import { useTheme } from 'hooks/theme';
 
 const headerItems = [
   {
@@ -44,6 +53,8 @@ export const Header = (): JSX.Element => {
   const [isHidden, setIsHidden] = useState(false);
 
   const timeoutRef = useRef<any>(null);
+
+  const { setTheme, selectedTheme } = useTheme();
 
   const toggleMenu = (): void => {
     const nextMenuState = !isMenuOpen;
@@ -109,16 +120,27 @@ export const Header = (): JSX.Element => {
           <span>Book your trip in instants</span>
         </div>
       </LogoContainer>
-      {previousWidth >= 1200 ? (
-        <ExpandedMenu headerItems={headerItems} />
-      ) : (
-        <HamburguerMenu
-          headerItems={headerItems}
-          isOpen={isMenuOpen}
-          toggleMenu={toggleMenu}
-          color={previousScrollPos.y === 0 ? '#000' : '#fff'}
+      <OptionsContainer>
+        {previousWidth >= 1200 ? (
+          <ExpandedMenu headerItems={headerItems} />
+        ) : (
+          <HamburguerMenu
+            headerItems={headerItems}
+            isOpen={isMenuOpen}
+            toggleMenu={toggleMenu}
+            color={previousScrollPos.y === 0 ? '#000' : '#fff'}
+          />
+        )}
+      </OptionsContainer>
+      <ThemeChangerContainer>
+        <Toggle
+          bgIconOn={<BiMoon size={12} />}
+          bgIconOff={<BiSun size={12} />}
+          callback={() =>
+            setTheme(selectedTheme.name === 'default' ? 'dark' : 'default')
+          }
         />
-      )}
+      </ThemeChangerContainer>
     </Container>
   );
 };

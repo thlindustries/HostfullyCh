@@ -9,6 +9,7 @@ export default createGlobalStyle`
     list-style: none;
     text-decoration: none;
 
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   }
 
   body {
@@ -25,7 +26,6 @@ export default createGlobalStyle`
     line-height: 1.7;
     
     min-width: 660px;
-
   }
 
   html{

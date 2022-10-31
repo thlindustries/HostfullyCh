@@ -1,12 +1,12 @@
-export const defaultTheme = {
-  name: 'default',
+export const darkTheme = {
+  name: 'dark',
   colors: {
     colorBg: '#c4c4c4',
     colorPrimary: '#ff473f',
     colorPrimaryVariant: '#e45657',
-    colorWhite: '#ffffff',
-    colorBlack: '#000000',
-    colorGray200: '#FBFBFB',
+    colorWhite: '#171717',
+    colorBlack: '#ffff',
+    colorGray200: '#0d0c1d',
     colorGray300: '#ADADAD',
 
     // burgerColors

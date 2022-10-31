@@ -13,9 +13,10 @@ declare module 'styled-components' {
     colorBlack: string;
     colorGray200: string;
     colorGray300: string;
-    colorFooter: string;
     colorBurgerBg: string;
     colorBurgerText: string;
     scrollingHeaderColor: string;
+    blueNight: string;
+    lightYellow: string;
   }
 }

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 
-import { defaultTheme } from 'themes/default';
+import { defaultTheme, darkTheme } from 'themes';
 import { DefaultColors, DefaultTheme, ThemeProvider } from 'styled-components';
 
 type ThemeContextData = {
@@ -8,6 +8,7 @@ type ThemeContextData = {
   updateThemeColor: (field: keyof DefaultColors, color: string) => void;
   saveCustomTheme: () => void;
   resetTheme: () => void;
+  setTheme: (themName: string) => void;
 };
 
 type ThemeCustomizationProviderProps = {
@@ -47,10 +48,27 @@ export const ThemeCustomizationProvider = ({
     localStorage.removeItem('@hostfully:theme');
   };
 
+  const setTheme = (themeName: string): void => {
+    switch (themeName) {
+      case 'dark':
+        setSelectedTheme(darkTheme);
+        break;
+      default:
+        setSelectedTheme(defaultTheme);
+        break;
+    }
+  };
+
   return (
     <ThemeProvider theme={selectedTheme}>
       <ThemeContext.Provider
-        value={{ selectedTheme, updateThemeColor, saveCustomTheme, resetTheme }}
+        value={{
+          selectedTheme,
+          updateThemeColor,
+          saveCustomTheme,
+          resetTheme,
+          setTheme,
+        }}
       >
         {children}
       </ThemeContext.Provider>

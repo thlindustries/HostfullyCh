@@ -30,7 +30,15 @@ export const Booking = (): JSX.Element => {
   return (
     <Container>
       <HeaderHero>
-        <LazyLoadImage alt="background-image" src={bgImage} />
+        <LazyLoadImage
+          effect="blur"
+          width="100%"
+          height="100%"
+          loading="lazy"
+          placeholderSrc={bgImage}
+          alt="background-image"
+          src={bgImage}
+        />
       </HeaderHero>
       <BookingNavigationContainer>
         <BookingNavigation activeTab={activeTab} setActiveTab={setActiveTab} />

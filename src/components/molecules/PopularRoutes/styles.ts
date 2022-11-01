@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+interface VerticalScrollContainerProps {
+  loading?: boolean;
+}
 
 export const SwiperContainer = styled.div`
   display: flex;
@@ -10,7 +14,7 @@ export const SwiperContainer = styled.div`
   }
 `;
 
-export const VerticalScrollContainer = styled.div`
+export const VerticalScrollContainer = styled.div<VerticalScrollContainerProps>`
   display: none;
   width: 100%;
   max-height: 100%;
@@ -19,7 +23,6 @@ export const VerticalScrollContainer = styled.div`
   @media (max-width: 1300px) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 100vh;
   }
 
   @media (max-width: 950px) {
@@ -32,4 +35,11 @@ export const VerticalScrollContainer = styled.div`
     flex-flow: wrap;
     justify-content: center;
   }
+
+  ${({ loading }) =>
+    loading
+      ? css`
+          display: flex;
+        `
+      : null}
 `;

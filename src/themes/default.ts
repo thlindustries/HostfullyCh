@@ -28,5 +28,10 @@ export const defaultTheme: DefaultTheme = {
     primaryBg: '#fff',
     secondaryBg: '#FBFBFB',
     darkerBg: '#303030',
+
+    // Skeleton
+    skeletonBg0: 'rgba(61, 61, 61, 0)',
+    skeletonBg50: 'rgba(61, 61, 61, 0.4)',
+    skeletonBg100: 'rgba(61, 61, 61, 0)',
   },
 };

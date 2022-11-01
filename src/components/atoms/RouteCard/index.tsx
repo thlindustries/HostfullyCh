@@ -23,7 +23,15 @@ export const RouteCard = ({
   return (
     <Container>
       <div className="thumb">
-        <LazyLoadImage alt={name} src={thumb} />
+        <LazyLoadImage
+          alt={name}
+          src={thumb}
+          effect="blur"
+          width="100%"
+          height="100%"
+          loading="lazy"
+          placeholderSrc={thumb}
+        />
       </div>
       <div className="info">
         <h3>{name}</h3>

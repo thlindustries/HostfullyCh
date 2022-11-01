@@ -25,5 +25,8 @@ declare module 'styled-components' {
     primaryBg: string;
     secondaryBg: string;
     darkerBg: string;
+    skeletonBg0: string;
+    skeletonBg50: string;
+    skeletonBg100: string;
   }
 }

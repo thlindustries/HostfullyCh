@@ -85,7 +85,7 @@ export const LogoContainer = styled.div`
 
 export const OptionsContainer = styled.div<OptionsContainerProps>`
   display: flex;
-  width: ${({ collapsed }) => (collapsed ? 'auto' : '45%')};
+  width: ${({ collapsed }) => (collapsed ? 'auto' : '25%')};
   justify-content: space-between;
   margin-left: auto;
 

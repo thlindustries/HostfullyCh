@@ -1,4 +1,4 @@
-import { Input } from 'components/atoms/Input';
+import { AiFillEye } from 'react-icons/ai';
 
 import { TabsContainer, Tabs, Tab, TabContent } from './styles';
 
@@ -11,10 +11,6 @@ export const BookingNavigation = ({
   activeTab,
   setActiveTab,
 }: BookingNavigationProps): JSX.Element => {
-  const handleScheduleFlights = (e: React.FormEvent<HTMLFormElement>): void => {
-    console.log(e);
-  };
-
   return (
     <TabsContainer>
       <Tabs>
@@ -22,22 +18,16 @@ export const BookingNavigation = ({
           onClick={() => setActiveTab('flights')}
           selected={activeTab === 'flights'}
         >
-          Flights
-        </Tab>
-        <div className="v-separator" />
-        <Tab
-          onClick={() => setActiveTab('hotels')}
-          selected={activeTab === 'hotels'}
-        >
-          Hotels
+          <AiFillEye size={20} />
+          Trips
         </Tab>
       </Tabs>
 
       {activeTab === 'flights' ? (
         <TabContent>
-          <form onSubmit={handleScheduleFlights}>
+          {/* <form onSubmit={handleScheduleFlights}>
             <Input type="text" label="Teste" />
-          </form>
+          </form> */}
         </TabContent>
       ) : (
         <TabContent></TabContent>

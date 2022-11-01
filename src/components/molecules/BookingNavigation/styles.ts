@@ -45,11 +45,7 @@ export const Tab = styled.div<TabProps>`
 
   transition: 0.4s;
 
-  border-radius: 8px 0 0 0;
-
-  &:nth-child(3) {
-    border-radius: 0 8px 0 0;
-  }
+  border-radius: 8px 8px 0 0;
 
   ${({ theme, selected }) =>
     selected
@@ -71,6 +67,10 @@ export const Tab = styled.div<TabProps>`
     background: ${({ theme }) => theme.colors.colorPrimary};
     color: ${({ theme }) => theme.colors.primaryTextColor};
     filter: unset;
+  }
+
+  svg {
+    margin-right: 1rem;
   }
 
   @media (max-width: 630px) {

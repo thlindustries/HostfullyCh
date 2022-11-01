@@ -27,20 +27,20 @@ const headerItems = [
     icon: <AiFillHome size={20} />,
   },
   {
-    link: '/booking/create/',
-    text: 'Book your trip',
+    link: '/booking/list/',
+    text: 'Your trips',
     icon: <AiFillSchedule size={20} />,
   },
-  {
-    link: '/booking/update/',
-    text: 'Update your trip',
-    icon: <MdOutlineUpdate size={20} />,
-  },
-  {
-    link: '/booking/delete/',
-    text: 'Abandon trip',
-    icon: <MdFreeCancellation size={20} />,
-  },
+  // {
+  //   link: '/booking/update/',
+  //   text: 'Update your trip',
+  //   icon: <MdOutlineUpdate size={20} />,
+  // },
+  // {
+  //   link: '/booking/delete/',
+  //   text: 'Abandon trip',
+  //   icon: <MdFreeCancellation size={20} />,
+  // },
 ];
 
 export const Header = (): JSX.Element => {

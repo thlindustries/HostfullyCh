@@ -1,4 +1,3 @@
-import React from 'react';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
@@ -6,8 +5,9 @@ import { converNumberToBRL } from 'utils/functions';
 
 import { Container } from './styles';
 
-type RouteCardProps = {
+type RouteType = {
   name: string;
+  id: string;
   thumb: string;
   price: {
     from: number;
@@ -15,13 +15,16 @@ type RouteCardProps = {
   };
 };
 
-export const RouteCard = ({
-  name,
-  price,
-  thumb,
-}: RouteCardProps): JSX.Element => {
+type RouteCardProps = {
+  route: RouteType;
+  onClick: () => void;
+};
+
+export const RouteCard = ({ route, onClick }: RouteCardProps): JSX.Element => {
+  const { name, price, thumb } = route;
+
   return (
-    <Container>
+    <Container onClick={onClick}>
       <div className="thumb">
         <LazyLoadImage
           alt={name}

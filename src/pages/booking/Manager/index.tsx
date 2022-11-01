@@ -1,6 +1,6 @@
 import { Container } from './styles';
 
-export const CreateBooking = (): JSX.Element => {
+export const BookingManager = (): JSX.Element => {
   return (
     <Container>
       <p>Create Booking</p>

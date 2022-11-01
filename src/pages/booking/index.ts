@@ -1,6 +1,5 @@
 import { Booking } from 'pages/booking/Booking';
-import { CreateBooking } from 'pages/booking/CreateBooking';
-import { UpdateBooking } from 'pages/booking/UpdateBooking';
-import { DeleteBooking } from 'pages/booking/DeleteBooking';
+import { BookingManager } from 'pages/booking/Manager';
+import { BookingDetails } from 'pages/booking/Details';
 
-export { Booking, CreateBooking, UpdateBooking, DeleteBooking };
+export { Booking, BookingManager, BookingDetails };

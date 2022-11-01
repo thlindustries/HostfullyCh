@@ -1,6 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -12,9 +13,9 @@ import { ShimmerCard } from 'components/atoms/RouteCard/ShimmerCard';
 
 import { SwiperContainer, VerticalScrollContainer } from './styles';
 
-type PupularRoutes = {
+export type PopularRoutesType = {
   name: string;
-  id: number;
+  id: string;
   thumb: string;
   price: {
     from: number;
@@ -23,12 +24,14 @@ type PupularRoutes = {
 };
 
 export const PopularRoutes = (): JSX.Element => {
-  const getPopularRoutes = async (): Promise<PupularRoutes[]> => {
+  const navigate = useNavigate();
+
+  const getPopularRoutes = async (): Promise<PopularRoutesType[]> => {
     const response = await api.get('/popularRoutes');
     return response.data;
   };
 
-  const { data, isLoading } = useQuery<PupularRoutes[]>(
+  const { data, isLoading = false } = useQuery<PopularRoutesType[]>(
     ['popularRoutes'],
     getPopularRoutes,
   );
@@ -50,9 +53,8 @@ export const PopularRoutes = (): JSX.Element => {
               {data?.map((item) => (
                 <SwiperSlide key={item.id}>
                   <RouteCard
-                    name={item.name}
-                    thumb={item.thumb}
-                    price={item.price}
+                    route={item}
+                    onClick={() => navigate(`/booking/${item.id}`)}
                   />
                 </SwiperSlide>
               ))}
@@ -61,10 +63,9 @@ export const PopularRoutes = (): JSX.Element => {
           <VerticalScrollContainer>
             {data?.map((item) => (
               <RouteCard
-                name={item.name}
-                thumb={item.thumb}
-                price={item.price}
                 key={item.id}
+                route={item}
+                onClick={() => navigate(`/booking/${item.id}`)}
               />
             ))}
           </VerticalScrollContainer>

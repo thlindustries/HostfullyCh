@@ -1,4 +1,3 @@
-import React from 'react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
 import { ThemeCustomizationProvider } from './theme';
@@ -11,10 +10,8 @@ type AppProviderProps = {
 
 const AppProvider = ({ children }: AppProviderProps): JSX.Element => (
   <ThemeCustomizationProvider>
-    <QueryClientProvider client={queryClient}>
-      {children}
-    </QueryClientProvider>
-    </ThemeCustomizationProvider>
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  </ThemeCustomizationProvider>
 );
 
 export default AppProvider;

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import homeBanner from 'assets/images/skyPlane.jpg';
+import darkHomeBanner from 'assets/images/skyNight.webp';
 
 export const Container = styled.div`
   position: relative;
@@ -10,12 +11,19 @@ export const Container = styled.div`
 `;
 
 export const HeaderHero = styled.section`
-  background-image: url(${homeBanner});
+  background-image: ${({ theme }) =>
+    theme.name === 'dark' ? `url(${darkHomeBanner})` : `url(${homeBanner})`};
+
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: ${({ theme }) =>
+    theme.name === 'dark' ? 'center -75px' : 'center'};
 
   height: 45%;
+
+  @media (max-width: 690px) {
+    background-position: center;
+  }
 `;
 
 export const BookingNavigationContainer = styled.div`
@@ -33,8 +41,6 @@ export const BookingNavigationContainer = styled.div`
   border-radius: 0 8px 8px 8px;
 
   box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.4);
-
-  border: solid 1px ${({ theme }) => theme.colors.colorPrimary};
 
   opacity: 0.9;
 

@@ -47,7 +47,10 @@ export const LogoContainer = styled.div`
   height: 100%;
   width: 20%;
 
-  color: ${({ theme }) => theme.colors.secondaryTextColor};
+  color: ${({ theme }) =>
+    theme.name === 'dark'
+      ? theme.colors.primaryTextColor
+      : theme.colors.secondaryTextColor};
 
   .body {
     display: flex;

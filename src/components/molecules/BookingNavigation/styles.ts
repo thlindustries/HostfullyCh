@@ -14,7 +14,6 @@ export const TabsContainer = styled.div`
 export const Tabs = styled.div`
   position: absolute;
   top: 0;
-  left: -1px;
   display: flex;
 
   width: 40%;
@@ -61,9 +60,6 @@ export const Tab = styled.div<TabProps>`
               : theme.colors.primaryBg};
 
           color: ${theme.colors.colorPrimary};
-          border-style: solid;
-          border-color: ${({ theme }) => theme.colors.colorPrimary};
-          border-width: 1px 1px 0 1px;
         `
       : css`
           background: rgba(255, 255, 255, 0.4);

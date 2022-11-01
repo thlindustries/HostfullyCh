@@ -4,12 +4,10 @@ export const Container = styled.div`
   position: relative;
 
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 68px);
 `;
 
 export const BodyContainer = styled.div`
   width: 100%;
   height: 100%;
-
-  margin-top: -68px;
 `;

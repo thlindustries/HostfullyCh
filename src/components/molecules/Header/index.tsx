@@ -1,11 +1,9 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
-import {
-  MdFlightTakeoff,
-  MdFreeCancellation,
-  MdOutlineUpdate,
-} from 'react-icons/md';
+
+import { MdFlightTakeoff } from 'react-icons/md';
 import { AiFillHome, AiFillSchedule } from 'react-icons/ai';
 import { BiSun, BiMoon } from 'react-icons/bi';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { HamburguerMenu } from './HamburguerMenu';
 import { ExpandedMenu } from './ExpandedMenu';
@@ -31,16 +29,6 @@ const headerItems = [
     text: 'Your trips',
     icon: <AiFillSchedule size={20} />,
   },
-  // {
-  //   link: '/booking/update/',
-  //   text: 'Update your trip',
-  //   icon: <MdOutlineUpdate size={20} />,
-  // },
-  // {
-  //   link: '/booking/delete/',
-  //   text: 'Abandon trip',
-  //   icon: <MdFreeCancellation size={20} />,
-  // },
 ];
 
 export const Header = (): JSX.Element => {
@@ -53,6 +41,9 @@ export const Header = (): JSX.Element => {
   const [isHidden, setIsHidden] = useState(false);
 
   const timeoutRef = useRef<any>(null);
+
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const { setTheme, selectedTheme } = useTheme();
 
@@ -112,8 +103,11 @@ export const Header = (): JSX.Element => {
   }, [previousScrollPos]);
 
   return (
-    <Container hidden={isHidden} transparentBg={previousScrollPos.y === 0}>
-      <LogoContainer>
+    <Container
+      hidden={isHidden}
+      transparentBg={pathname === '/' && previousScrollPos.y === 0}
+    >
+      <LogoContainer onClick={() => navigate('/')}>
         <MdFlightTakeoff size={32} />
         <div className="body">
           <p>Hostfully Booking</p>

@@ -1,13 +1,20 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+interface ImgSelectCardProps {
+  selected: boolean;
+}
 
 export const Container = styled.div`
+  display: flex;
   position: relative;
   width: 100%;
   height: 100%;
 `;
 
 export const HeaderHero = styled.section`
-  height: 45%;
+  display: flex;
+  height: 100%;
+  width: 50%;
 
   img {
     width: 100%;
@@ -25,11 +32,13 @@ export const HeaderHero = styled.section`
 `;
 
 export const BodyContent = styled.section`
-  background: black;
+  background: ${({ theme }) => theme.colors.primaryBg};
+  box-shadow: inset 5px 5px 15px -5px rgba(0, 0, 0, 0.4);
   display: flex;
+  flex-direction: column;
 
-  width: 100%;
-  height: 80%;
+  width: 50%;
+  height: 100%;
 
   padding: 2rem;
 `;
@@ -37,9 +46,18 @@ export const BodyContent = styled.section`
 export const Info = styled.div`
   display: flex;
   flex-direction: column;
-  width: 45%;
-  border: solid 1px red;
+  width: 100%;
+  height: 50%;
   padding: 1rem;
+
+  background-color: ${({ theme }) => theme.colors.darkerBg};
+  color: ${({ theme }) => theme.colors.secondaryTextColor};
+
+  border-radius: 4px;
+
+  h2 {
+    margin-top: auto;
+  }
 `;
 
 export const DescriptionContainer = styled.div`
@@ -57,14 +75,11 @@ export const Comments = styled.div`
   margin-top: auto;
 
   overflow-y: auto;
-  h2 {
-    margin-bottom: 1rem;
-  }
 
   .comment {
     margin-bottom: 1rem;
 
-    border: solid 1px gray;
+    border: solid 0.5px ${({ theme }) => theme.colors.secondaryTextColor};
     padding: 0.5rem;
     border-radius: 4px;
 
@@ -77,7 +92,8 @@ export const Comments = styled.div`
 export const ImagesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 100%;
+  height: 50%;
   padding: 1rem;
 
   img {
@@ -97,30 +113,44 @@ export const ImagesContainer = styled.div`
     align-items: flex-start;
     flex-wrap: wrap;
     width: fit-content;
-    max-width: 100%;
-    height: 20%;
+    width: 100%;
+    height: 180px;
     row-gap: 1rem;
     overflow-x: auto;
 
     margin-top: 1.5rem;
 
     padding: 1rem;
+  }
+`;
 
-    .img-select-card {
-      border: solid 1px red;
-      border-radius: 8px;
-      width: 120px;
-      height: 100px;
+export const ImgSelectCard = styled.div<ImgSelectCardProps>`
+  border-radius: 8px;
+  width: 120px;
+  height: 100px;
 
-      & + .img-select-card {
-        margin-left: 1rem;
-      }
+  & + & {
+    margin-left: 1rem;
+  }
 
-      transition: opacity 0.2s ease-in-out;
-      &:hover {
-        cursor: pointer;
-        opacity: 0.6;
-      }
-    }
+  transition: opacity 0.2s ease-in-out;
+
+  img {
+    border-radius: 8px;
+  }
+
+  ${({ selected, theme }) =>
+    selected
+      ? css`
+          opacity: 1;
+          border: solid 2px ${theme.colors.colorPrimary};
+        `
+      : css`
+          opacity: 0.4;
+        `}
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.6;
   }
 `;

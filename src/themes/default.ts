@@ -18,7 +18,7 @@ export const defaultTheme: DefaultTheme = {
     colorBurgerText: '#0d0c1d',
 
     // headerColors
-    scrollingHeaderColor: 'rgba(0,0,0,0.3)',
+    scrollingHeaderColor: 'rgba(0,0,0,0.5)',
     blueNight: '#3f3da8',
     lightYellow: '#c9b900',
 

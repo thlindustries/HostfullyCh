@@ -21,12 +21,6 @@ export const Tabs = styled.div`
 
   margin-top: -50px;
 
-  .v-separator {
-    background: ${({ theme }) => theme.colors.colorGray300};
-    width: 1px;
-    height: 100%;
-  }
-
   @media (max-width: 630px) {
     margin-top: -36px;
     left: unset;

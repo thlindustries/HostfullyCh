@@ -21,7 +21,7 @@ export default createGlobalStyle`
     overflow-x: hidden;
 
     font-family: 'Poppins', sans-serif;
-    background-color: ${({ theme }) => theme.colors.colorBg};
+    background-color: ${({ theme }) => theme.colors.primaryBg};
     line-height: 1.7;
     
     min-width: 375px;
@@ -71,4 +71,11 @@ export default createGlobalStyle`
   .swiper-pagination-bullet-active{
     background-color: ${(props) => props.theme.colors.colorPrimary} !important;
   }
+
+  .v-separator {
+    background: ${({ theme }) => theme.colors.colorGray300};
+    width: 1px;
+    height: 100%;
+  }
+
 `;

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   position: relative;
+  width: 100%;
 
   label {
     position: absolute;
@@ -31,6 +32,7 @@ export const StyledInput = styled.input`
       transform: translateY(-50%) scale(0.8);
       padding: 0 0.2em;
       color: ${({ theme }) => theme.colors.colorPrimary};
+      border-radius: 4px;
       background-color: ${({ theme }) =>
         theme.name === 'dark'
           ? theme.colors.secondaryBg

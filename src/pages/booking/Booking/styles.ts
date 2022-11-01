@@ -16,10 +16,10 @@ export const HeaderHero = styled.section`
 
     object-fit: cover;
     object-position: ${({ theme }) =>
-      theme.name === 'dark' ? 'center -75px' : 'center'};
+      theme.name === 'dark' ? 'center -185px' : 'center'};
   }
 
-  @media (max-width: 690px) {
+  @media (max-width: 900px) {
     img {
       object-position: center;
     }
@@ -57,7 +57,7 @@ export const BodyContent = styled.section`
   width: 100%;
 
   display: flex;
-  height: 55%;
+  height: calc(55% + 68px);
   background-color: ${({ theme }) => theme.colors.secondaryBg};
 
   box-shadow: inset 5px 5px 15px -5px rgba(0, 0, 0, 0.4);

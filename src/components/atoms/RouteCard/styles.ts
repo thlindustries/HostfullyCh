@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-interface RouteCardProps {
-  bgImage?: string;
-}
-
-export const Container = styled.div<RouteCardProps>`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -15,17 +11,19 @@ export const Container = styled.div<RouteCardProps>`
 
   box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.4);
 
-  background-color: ${({ theme }) => theme.colors.colorWhite};
+  background-color: ${({ theme }) => theme.colors.primaryBg};
   color: black;
 
   .thumb {
     height: 60%;
     border-radius: 4px;
 
-    background-image: url(${({ bgImage }) => bgImage});
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 4px;
+      object-fit: cover;
+    }
   }
 
   .info {
@@ -34,7 +32,7 @@ export const Container = styled.div<RouteCardProps>`
     padding: 1.5rem;
     height: 40%;
 
-    color: ${({ theme }) => theme.colors.colorBlack};
+    color: ${({ theme }) => theme.colors.primaryTextColor};
 
     small {
       font-weight: bold;
@@ -54,7 +52,7 @@ export const Container = styled.div<RouteCardProps>`
         font-size: 1rem;
         padding: 0.25rem;
         background-color: ${({ theme }) => theme.colors.colorPrimary};
-        color: ${({ theme }) => theme.colors.colorWhite};
+        color: ${({ theme }) => theme.colors.secondaryTextColor};
         font-weight: bold;
         border-radius: 4px;
         margin-left: 1rem;

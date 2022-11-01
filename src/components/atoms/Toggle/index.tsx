@@ -4,15 +4,17 @@ import { Container, BtnCircle } from './styles';
 type ToggleProps = {
   bgIconOn?: JSX.Element;
   bgIconOff?: JSX.Element;
+  defaultValue?: boolean;
   callback?: () => void;
 };
 
 export const Toggle = ({
   bgIconOff,
   bgIconOn,
+  defaultValue = false,
   callback,
 }: ToggleProps): JSX.Element => {
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(() => defaultValue);
 
   const handleToggle = (): void => {
     callback?.();

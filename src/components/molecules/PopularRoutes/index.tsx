@@ -54,7 +54,7 @@ const Routes = [
   {
     name: 'California',
     id: 5555,
-    thumb: californiaImg,
+    thumb: 'https://drive.google.com/file/d/1g5QxydbEONxmX2wwqPFMY9wp3qsQ6Fq8',
     price: {
       from: 400,
       to: 110,

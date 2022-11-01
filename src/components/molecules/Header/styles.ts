@@ -38,6 +38,7 @@ export const Container = styled.div<ContainerProps>`
 
   @media(max-width: 500px) {
     padding: 0.8rem 2rem;
+    justify-content: space-around;
   }
 `;
 
@@ -45,7 +46,7 @@ export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
-  width: 20%;
+  width: 35%;
 
   color: ${({ theme }) =>
     theme.name === 'dark'
@@ -70,7 +71,12 @@ export const LogoContainer = styled.div`
     opacity: 0.4;
   }
 
+  @media (max-width: 820px) {
+    width: 45%;
+  }
+
   @media (max-width: 630px) {
+    width: fit-content;
     .body {
       display: none;
     }
@@ -82,6 +88,10 @@ export const OptionsContainer = styled.div<OptionsContainerProps>`
   width: ${({ collapsed }) => (collapsed ? 'auto' : '45%')};
   justify-content: space-between;
   margin-left: auto;
+
+  @media (max-width: 240px) {
+    display: none;
+  }
 `;
 
 export const ThemeChangerContainer = styled.div`

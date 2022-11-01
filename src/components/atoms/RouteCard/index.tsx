@@ -1,5 +1,6 @@
 import React from 'react';
 import { AiOutlineArrowRight } from 'react-icons/ai';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { converNumberToBRL } from 'utils/functions';
 
@@ -20,8 +21,10 @@ export const RouteCard = ({
   thumb,
 }: RouteCardProps): JSX.Element => {
   return (
-    <Container bgImage={thumb}>
-      <div className="thumb" />
+    <Container>
+      <div className="thumb">
+        <LazyLoadImage alt={name} src={thumb} />
+      </div>
       <div className="info">
         <h3>{name}</h3>
         <small>From</small>

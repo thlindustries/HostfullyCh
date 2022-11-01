@@ -105,11 +105,7 @@ export const StyledBurger = styled.button<StyledMenuProps & BurgerProps>`
     width: 2rem;
     height: 0.25rem;
     background: ${({ open, theme }) =>
-      open
-        ? theme.colors.darkerBg
-        : theme.name === 'dark'
-        ? theme.colors.darkerBg
-        : theme.colors.secondaryBg};
+      open ? theme.colors.colorPrimary : theme.colors.colorWhite};
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;

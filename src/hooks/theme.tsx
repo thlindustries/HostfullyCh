@@ -49,14 +49,19 @@ export const ThemeCustomizationProvider = ({
   };
 
   const setTheme = (themeName: string): void => {
+    let updatedTheme;
+
     switch (themeName) {
       case 'dark':
-        setSelectedTheme(darkTheme);
+        updatedTheme = darkTheme;
         break;
       default:
-        setSelectedTheme(defaultTheme);
+        updatedTheme = defaultTheme;
         break;
     }
+
+    setSelectedTheme(updatedTheme);
+    localStorage.setItem('@hostfully:theme', JSON.stringify(updatedTheme));
   };
 
   return (

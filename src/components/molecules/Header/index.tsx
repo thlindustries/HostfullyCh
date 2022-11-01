@@ -140,6 +140,7 @@ export const Header = (): JSX.Element => {
         <Toggle
           bgIconOn={<BiMoon size={12} />}
           bgIconOff={<BiSun size={12} />}
+          defaultValue={selectedTheme.name !== 'default'}
           callback={() =>
             setTheme(selectedTheme.name === 'default' ? 'dark' : 'default')
           }

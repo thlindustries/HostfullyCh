@@ -24,7 +24,6 @@ export const Container = styled.div<RouteCardProps>`
 
     background-image: url(${({ bgImage }) => bgImage});
     background-repeat: no-repeat;
-    background-attachment: fixed;
     background-size: cover;
     background-position: center;
   }
@@ -69,5 +68,43 @@ export const Container = styled.div<RouteCardProps>`
     transform: scale(1.05);
 
     box-shadow: 25px 10px 15px -5px rgba(0, 0, 0, 0.4);
+  }
+
+  @media (max-width: 1300px) {
+    width: 220px;
+    height: 240px;
+
+    font-size: 0.8rem;
+
+    .info {
+      padding: 0.2rem;
+    }
+    p:not(.old-price) {
+      font-size: 0.8rem;
+      padding: 0.1rem;
+      margin-left: 0.2rem;
+    }
+
+    &:hover {
+      box-shadow: 5px 10px 15px -5px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  @media (max-width: 950px) {
+    width: 240px;
+    height: 280px;
+  }
+
+  @media (max-width: 690px) {
+    width: 440px;
+    height: 280px;
+
+    margin-bottom: 1rem;
+
+    .info {
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 2rem;
+    }
   }
 `;

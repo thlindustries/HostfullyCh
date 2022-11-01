@@ -12,6 +12,8 @@ import californiaImg from 'assets/images/california.webp';
 
 import { RouteCard } from 'components/atoms/RouteCard';
 
+import { SwiperContainer, VerticalScrollContainer } from './styles';
+
 const Routes = [
   {
     name: 'Dubai',
@@ -62,20 +64,38 @@ const Routes = [
 
 export const PopularRoutes = (): JSX.Element => {
   return (
-    <Swiper
-      slidesPerView={4}
-      spaceBetween={30}
-      pagination={{
-        clickable: true,
-      }}
-      modules={[Pagination]}
-      className="mySwiper"
-    >
-      {Routes.map((item) => (
-        <SwiperSlide key={item.id}>
-          <RouteCard name={item.name} thumb={item.thumb} price={item.price} />
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <>
+      <SwiperContainer>
+        <Swiper
+          slidesPerView={4}
+          spaceBetween={30}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Pagination]}
+          className="mySwiper"
+        >
+          {Routes.map((item) => (
+            <SwiperSlide key={item.id}>
+              <RouteCard
+                name={item.name}
+                thumb={item.thumb}
+                price={item.price}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </SwiperContainer>
+      <VerticalScrollContainer>
+        {Routes.map((item) => (
+          <RouteCard
+            name={item.name}
+            thumb={item.thumb}
+            price={item.price}
+            key={item.id}
+          />
+        ))}
+      </VerticalScrollContainer>
+    </>
   );
 };

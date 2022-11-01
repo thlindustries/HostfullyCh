@@ -5,6 +5,10 @@ interface ContainerProps {
   transparentBg: boolean;
 }
 
+interface OptionsContainerProps {
+  collapsed: boolean;
+}
+
 export const Container = styled.div<ContainerProps>`
   position: sticky;
   display: flex;
@@ -14,7 +18,7 @@ export const Container = styled.div<ContainerProps>`
   width: 100%;
   height: 68px;
   padding: 0.8rem 6rem;
-  min-width: 400px;
+  min-width: 630;
   z-index: 10;
 
   background-color: rgba(0, 0, 0, 0.3);
@@ -43,7 +47,7 @@ export const LogoContainer = styled.div`
   height: 100%;
   width: 20%;
 
-  color: ${({ theme }) => theme.colors.colorWhite};
+  color: ${({ theme }) => theme.colors.secondaryTextColor};
 
   .body {
     display: flex;
@@ -62,13 +66,21 @@ export const LogoContainer = styled.div`
     cursor: pointer;
     opacity: 0.4;
   }
+
+  @media (max-width: 630px) {
+    .body {
+      display: none;
+    }
+  }
 `;
 
-export const OptionsContainer = styled.div`
+export const OptionsContainer = styled.div<OptionsContainerProps>`
   display: flex;
-  width: 45%;
+  width: ${({ collapsed }) => (collapsed ? 'auto' : '45%')};
   justify-content: space-between;
   margin-left: auto;
 `;
 
-export const ThemeChangerContainer = styled.div``;
+export const ThemeChangerContainer = styled.div`
+  margin-left: 1rem;
+`;

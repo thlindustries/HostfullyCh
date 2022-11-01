@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface StyledMenuProps {
   open: boolean;
@@ -21,7 +21,7 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: ${({ theme }) => theme.colors.colorBurgerBg};
+  background: ${({ theme }) => theme.colors.secondaryBg};
   transform: ${({ open }) => (open ? 'translateX(0%)' : 'translateX(200%)')};
   height: 100vh;
   text-align: left;
@@ -30,10 +30,9 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
   top: 0;
   right: 0;
   transition: transform 0.3s ease-in-out;
+  z-index: 9;
 
-  @media (max-width: 576px) {
-    width: 100%;
-  }
+  min-width: 630px;
 
   a {
     display: flex;
@@ -44,7 +43,7 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: 0.5rem;
-    color: ${({ theme }) => theme.colors.colorBurgerText};
+    color: ${({ theme }) => theme.colors.primaryTextColor};
     text-decoration: none;
 
     &,
@@ -54,7 +53,7 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
 
     svg {
       margin-right: 1rem;
-      color: ${({ theme }) => theme.colors.colorBlack};
+      color: ${({ theme }) => theme.colors.primaryTextColor};
     }
 
     @media (max-width: 576px) {
@@ -69,6 +68,15 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
       }
     }
   }
+
+  @media (max-width: 576px) {
+    width: 100%;
+    min-width: unset;
+    a {
+      font-size: 1rem;
+      letter-spacing: unset;
+    }
+  }
 `;
 
 export const StyledBurger = styled.button<StyledMenuProps & BurgerProps>`
@@ -76,23 +84,32 @@ export const StyledBurger = styled.button<StyledMenuProps & BurgerProps>`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 2rem;
+  z-index: 10;
+  align-items: center;
+
+  width: 2.5rem;
   height: 2rem;
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 10;
 
   &:focus {
     outline: none;
   }
 
+  transition: right 0.5s cubic-bezier(0.165, 0.84, 0.44, 1),
+    left 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+
   div {
     width: 2rem;
     height: 0.25rem;
-    background: ${({ color, open, theme }) =>
-      open ? theme.colors.colorBurgerText : color};
+    background: ${({ open, theme }) =>
+      open
+        ? theme.colors.darkerBg
+        : theme.name === 'dark'
+        ? theme.colors.darkerBg
+        : theme.colors.secondaryBg};
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;
@@ -110,5 +127,25 @@ export const StyledBurger = styled.button<StyledMenuProps & BurgerProps>`
     :nth-child(3) {
       transform: ${({ open }) => (open ? 'rotate(-45deg)' : 'rotate(0)')};
     }
+  }
+  ${({ open }) =>
+    open
+      ? css`
+          right: 26rem;
+        `
+      : css`
+          right: 10.3rem;
+        `}
+
+  @media (max-width: 630px) {
+    ${({ open }) =>
+      open
+        ? css`
+            left: 2rem;
+          `
+        : css`
+            left: unset;
+            right: unset;
+          `}
   }
 `;

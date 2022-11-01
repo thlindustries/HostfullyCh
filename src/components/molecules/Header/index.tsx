@@ -120,7 +120,7 @@ export const Header = (): JSX.Element => {
           <span>Book your trip in instants</span>
         </div>
       </LogoContainer>
-      <OptionsContainer>
+      <OptionsContainer collapsed={previousWidth < 1200}>
         {previousWidth >= 1200 ? (
           <ExpandedMenu headerItems={headerItems} />
         ) : (
@@ -128,7 +128,11 @@ export const Header = (): JSX.Element => {
             headerItems={headerItems}
             isOpen={isMenuOpen}
             toggleMenu={toggleMenu}
-            color={previousScrollPos.y === 0 ? '#000' : '#fff'}
+            color={
+              previousScrollPos.y === 0
+                ? selectedTheme.colors.secondaryBg
+                : selectedTheme.colors.primaryBg
+            }
           />
         )}
       </OptionsContainer>

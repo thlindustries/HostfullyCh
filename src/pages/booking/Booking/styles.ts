@@ -21,9 +21,9 @@ export const HeaderHero = styled.section`
 export const BookingNavigationContainer = styled.div`
   position: absolute;
   display: flex;
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.primaryBg};
 
-  width: 52%;
+  width: 82%;
   height: 220px;
   margin-top: -160px;
 
@@ -31,9 +31,16 @@ export const BookingNavigationContainer = styled.div`
   transform: translateX(-50%);
 
   border-radius: 0 8px 8px 8px;
+
   box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.4);
 
   border: solid 1px ${({ theme }) => theme.colors.colorPrimary};
+
+  opacity: 0.9;
+
+  @media (max-width: 630px) {
+    border: none;
+  }
 `;
 
 export const BodyContent = styled.section`
@@ -44,7 +51,7 @@ export const BodyContent = styled.section`
 
   display: flex;
   height: 55%;
-  background-color: ${({ theme }) => theme.colors.colorGray200};
+  background-color: ${({ theme }) => theme.colors.secondaryBg};
 
   box-shadow: inset 5px 5px 15px -5px rgba(0, 0, 0, 0.4);
 `;

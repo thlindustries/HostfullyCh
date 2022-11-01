@@ -1,4 +1,6 @@
-import { TabsContainer, Tabs, Tab, FlightsTab, HotelsTab } from './styles';
+import { Input } from 'components/atoms/Input';
+
+import { TabsContainer, Tabs, Tab, TabContent } from './styles';
 
 type BookingNavigationProps = {
   activeTab: string;
@@ -9,6 +11,10 @@ export const BookingNavigation = ({
   activeTab,
   setActiveTab,
 }: BookingNavigationProps): JSX.Element => {
+  const handleScheduleFlights = (e: React.FormEvent<HTMLFormElement>): void => {
+    console.log(e);
+  };
+
   return (
     <TabsContainer>
       <Tabs>
@@ -28,13 +34,13 @@ export const BookingNavigation = ({
       </Tabs>
 
       {activeTab === 'flights' ? (
-        <FlightsTab>
-          <p>Flights Tab</p>
-        </FlightsTab>
+        <TabContent>
+          <form onSubmit={handleScheduleFlights}>
+            <Input type="text" label="Teste" />
+          </form>
+        </TabContent>
       ) : (
-        <HotelsTab>
-          <p>Hotels Tab</p>
-        </HotelsTab>
+        <TabContent></TabContent>
       )}
     </TabsContainer>
   );

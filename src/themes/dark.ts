@@ -1,13 +1,17 @@
-export const darkTheme = {
+import { DefaultTheme } from 'styled-components';
+
+export const darkTheme: DefaultTheme = {
   name: 'dark',
   colors: {
     colorBg: '#c4c4c4',
     colorPrimary: '#ff473f',
     colorPrimaryVariant: '#e45657',
-    colorWhite: '#171717',
-    colorBlack: '#ffff',
-    colorGray200: '#0d0c1d',
+    colorWhite: '#ffffff',
+    colorBlack: '#000000',
+    colorGray200: '#FBFBFB',
+    colorGray250: '#e8e8e8',
     colorGray300: '#ADADAD',
+    colorGray350: '#4f4f4f',
 
     // burgerColors
     colorBurgerBg: '#effffa',
@@ -17,5 +21,12 @@ export const darkTheme = {
     scrollingHeaderColor: 'rgba(0,0,0,0.3)',
     blueNight: '#3f3da8',
     lightYellow: '#c9b900',
+
+    // Theme-mutables
+    primaryTextColor: '#ffff',
+    secondaryTextColor: '#2b2b2b',
+    primaryBg: '#2b2b2b',
+    secondaryBg: '#616161',
+    darkerBg: '#303030',
   },
 };

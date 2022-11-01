@@ -14,18 +14,17 @@ export default createGlobalStyle`
 
   body {
     background-color: black;
-    color: #fff;
+    color: ${({ theme }) => theme.colors.primaryTextColor};
     width: 100vw;
     height: 100vh;
 
     overflow-x: hidden;
 
     font-family: 'Poppins', sans-serif;
-    background-color: ${(props) => props.theme.colors.colorBg};
-    color: ${(props) => props.theme.colors.colorWhite};
+    background-color: ${({ theme }) => theme.colors.colorBg};
     line-height: 1.7;
     
-    min-width: 660px;
+    min-width: 375px;
   }
 
   html{

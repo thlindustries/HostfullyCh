@@ -47,7 +47,7 @@ export const BtnCircle = styled.div<ContainerProps>`
   ${({ active }) =>
     active
       ? css`
-          background-color: ${({ theme }) => theme.colors.colorGray300};
+          background-color: ${({ theme }) => theme.colors.colorGray200};
           transform: translateX(20px) rotate(180deg);
           svg {
             color: ${({ theme }) => theme.colors.colorPrimary};

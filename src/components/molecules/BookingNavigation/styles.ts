@@ -19,12 +19,18 @@ export const Tabs = styled.div`
 
   width: 40%;
   border-radius: 8px 8px 0 0;
+
   margin-top: -50px;
 
   .v-separator {
     background: ${({ theme }) => theme.colors.colorGray300};
     width: 1px;
     height: 100%;
+  }
+
+  @media (max-width: 630px) {
+    margin-top: -36px;
+    left: unset;
   }
 `;
 
@@ -36,8 +42,7 @@ export const Tab = styled.div<TabProps>`
   align-items: center;
   font-weight: bold;
 
-  background: ${({ theme }) => theme.colors.colorWhite};
-  color: ${({ theme }) => theme.colors.colorWhite};
+  color: ${({ theme }) => theme.colors.primaryTextColor};
 
   transition: 0.4s;
 
@@ -50,7 +55,11 @@ export const Tab = styled.div<TabProps>`
   ${({ theme, selected }) =>
     selected
       ? css`
-          background: ${theme.colors.colorWhite};
+          background-color: ${({ theme }) =>
+            theme.name === 'dark'
+              ? theme.colors.secondaryBg
+              : theme.colors.primaryBg};
+
           color: ${theme.colors.colorPrimary};
           border-style: solid;
           border-color: ${({ theme }) => theme.colors.colorPrimary};
@@ -64,21 +73,27 @@ export const Tab = styled.div<TabProps>`
   &:hover {
     cursor: pointer;
     background: ${({ theme }) => theme.colors.colorPrimary};
-    color: ${({ theme }) => theme.colors.colorWhite};
+    color: ${({ theme }) => theme.colors.primaryTextColor};
     filter: unset;
+  }
+
+  @media (max-width: 630px) {
+    font-size: 0.8rem;
+    height: 36px;
+    border: none;
   }
 `;
 
-export const FlightsTab = styled.div`
+export const TabContent = styled.div`
+  display: flex;
+
+  align-items: center;
+  padding: 1rem;
+
   width: 100%;
   height: 100%;
 
-  border-radius: 0 0 0px 0;
-`;
+  border-radius: 0 8px 8px 8px;
 
-export const HotelsTab = styled.div`
-  width: 100%;
-  height: 100%;
-
-  border-radius: 0 0 8px 8px;
+  background-color: ${({ theme }) => theme.colors.secondaryBg};
 `;

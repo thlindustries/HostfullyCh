@@ -20,6 +20,7 @@ declare module 'styled-components' {
     scrollingHeaderColor: string;
     blueNight: string;
     lightYellow: string;
+    brazilGreen: string;
     primaryTextColor: string;
     secondaryTextColor: string;
     primaryBg: string;

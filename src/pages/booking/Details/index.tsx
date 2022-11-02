@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { useParams, useNavigate } from 'react-router-dom';
-import { AiOutlineArrowRight } from 'react-icons/ai';
+import { useParams } from 'react-router-dom';
 
-import { Modal } from 'components/atoms/modal';
-import { Input } from 'components/atoms/Input';
+import { Button } from 'components/atoms/Button';
+import { Modal } from 'components/atoms/Modal';
+
+import { CreateBookingModal } from './CreateBookingModal';
 
 import { api } from 'services/api';
 
@@ -13,14 +14,14 @@ import {
   Container,
   HeaderHero,
   BookingBtnContainer,
-  Button,
   BodyContent,
   Info,
   Comments,
   ImagesContainer,
   ImgSelectCard,
-  TestModal,
 } from './styles';
+import { toast } from 'react-toastify';
+import { useTrip } from 'hooks/trip';
 
 type Params = {
   routeId: string;
@@ -40,7 +41,7 @@ type RouteDetailsDTO = {
   };
 };
 
-type RouteAvailabilityDTO = {
+export type RouteAvailabilityDTO = {
   tripId: string;
   availablePeriods: Array<{
     id: string;
@@ -53,79 +54,80 @@ type RouteAvailabilityDTO = {
 export const BookingDetails = (): JSX.Element => {
   const [selectedImg, setSelectedImg] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [selectedTripDate, setSelectedTripDate] = useState('');
 
   const { routeId } = useParams() as Params;
-  const navigate = useNavigate();
 
-  const getRouteDetails = async (): Promise<RouteDetailsDTO> => {
-    const response = await api.get<RouteDetailsDTO>(`/booking/${routeId}`);
-    return response.data;
-  };
-
-  const getRouteAvailability = async (): Promise<RouteAvailabilityDTO> => {
-    const response = await api.get<RouteAvailabilityDTO>(
-      `/tripsAvailability/${routeId}`,
-    );
-    return response.data;
-  };
+  const { getRouteAvailability, getRouteDetails, createBooking, setUserName } =
+    useTrip();
 
   const { data: routeDetails } = useQuery<RouteDetailsDTO>(
-    ['routeDetails'],
-    getRouteDetails,
-  );
-  const { data: routeAvailability } = useQuery<RouteAvailabilityDTO>(
-    ['routeAvailability'],
-    getRouteAvailability,
+    [routeId],
+    async () => await getRouteDetails(routeId),
+    {
+      staleTime: 1000 * 60 * 20, // 20 min,
+    },
   );
 
-  const createBooking = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+  const { data: routeAvailability } = useQuery<RouteAvailabilityDTO>(
+    [`routeAvailability-${routeId}`],
+    async () => await getRouteAvailability(routeId),
+    {
+      staleTime: 1000 * 3, // 3 segs (needs to be updated as soon as possible to block trips already booked)
+    },
+  );
+
+  const handleCreateBooking = async (data: Record<any, any>): Promise<void> => {
+    if (!routeAvailability) {
+      toast.error('Oops, something went wronk, please try again!');
+      return;
+    }
+    const response = await createBooking(
+      data,
+      routeId,
+      selectedTripDate,
+      routeAvailability,
+    );
+
+    if (response.status !== 200) {
+      toast.error('Oops, something went wrong, try again :(');
+    }
+    toast.success('Ohh Yeah, your trip is booked, hope you like :D');
+    setUserName(data.name);
+    setShowModal(false);
+    setSelectedTripDate('');
+  };
+
+  const handleSelectTripDate = (tripId: string): void => {
+    const selectedTrip = routeAvailability?.availablePeriods.find(
+      (trip) => trip.id === tripId,
+    );
+    if (!selectedTrip) return;
+    const isTripAvailable = selectedTrip.available;
+
+    if (!isTripAvailable) {
+      toast.warn('This trip is not available :(');
+      return;
+    }
+
+    setSelectedTripDate((prevTripId) => (prevTripId === tripId ? '' : tripId));
   };
 
   return (
     <Container>
       <Modal isOpen={showModal} center>
-        <TestModal>
-          <div className="close-btn">
-            <button onClick={() => setShowModal(false)}>X</button>
-          </div>
-          <form onSubmit={createBooking}>
-            <div className="inputs-container">
-              <Input label="name" />
-              <Input label="last name" />
-              <Input label="age" />
-            </div>
-            <span>Available Dates</span>
-            <div className="booking-dates">
-              {routeAvailability?.availablePeriods.map(
-                (availability, index) => (
-                  <div
-                    className={`book-date ${
-                      availability.available ? '' : 'unavailable'
-                    }`}
-                    key={index}
-                  >
-                    <p>
-                      {new Date(availability?.from).toLocaleString()}{' '}
-                      <AiOutlineArrowRight size={12} />{' '}
-                      {new Date(availability?.to).toLocaleString()}
-                    </p>
-                  </div>
-                ),
-              )}
-            </div>
-            <Button
-              primary
-              type="submit"
-              onClick={() => setShowModal(true)}
-              disabled={routeAvailability?.availablePeriods.every(
-                (item) => !item.available,
-              )}
-            >
-              Book trip
-            </Button>
-          </form>
-        </TestModal>
+        {routeAvailability ? (
+          <CreateBookingModal
+            selectedTripDate={selectedTripDate}
+            routeAvailability={routeAvailability}
+            onSelectetTrip={handleSelectTripDate}
+            onSumbit={handleCreateBooking}
+            toggleModal={(cbState) =>
+              setShowModal((prevState) => cbState ?? !prevState)
+            }
+          />
+        ) : null}
       </Modal>
       <HeaderHero>
         <LazyLoadImage
@@ -138,7 +140,11 @@ export const BookingDetails = (): JSX.Element => {
         <BookingBtnContainer>
           <h3>Hello there</h3>
           <div className="btns">
-            <Button primary type="button" onClick={() => setShowModal(true)}>
+            <Button
+              buttonType="primary"
+              type="button"
+              onClick={() => setShowModal(true)}
+            >
               Book trip
             </Button>
           </div>

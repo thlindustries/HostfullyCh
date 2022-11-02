@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, QueryCache } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import 'swiper/css';
@@ -34,6 +34,9 @@ export const PopularRoutes = (): JSX.Element => {
   const { data, isLoading = false } = useQuery<PopularRoutesType[]>(
     ['popularRoutes'],
     getPopularRoutes,
+    {
+      staleTime: 1000 * 60 * 20, // 20 min,
+    },
   );
 
   return (

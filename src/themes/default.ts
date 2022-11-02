@@ -21,6 +21,7 @@ export const defaultTheme: DefaultTheme = {
     scrollingHeaderColor: 'rgba(0,0,0,0.5)',
     blueNight: '#3f3da8',
     lightYellow: '#c9b900',
+    brazilGreen: '#00cf53',
 
     // Generics
     primaryTextColor: '#2b2b2b',

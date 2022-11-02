@@ -33,10 +33,13 @@ export const StyledInput = styled.input`
       padding: 0 0.2em;
       color: ${({ theme }) => theme.colors.colorPrimary};
       border-radius: 4px;
-      background-color: ${({ theme }) =>
-        theme.name === 'dark'
-          ? theme.colors.secondaryBg
-          : theme.colors.primaryBg};
+      background-color: ${({ theme }) => theme.colors.primaryBg};
     }
+  }
+
+  &:not(:placeholder-shown) ~ label {
+    transform: translateY(-50%) scale(0.8);
+    padding: 0 0.2em;
+    background-color: ${({ theme }) => theme.colors.primaryBg};
   }
 `;

@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+
 import { Container, StyledInput } from './styles';
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
@@ -8,9 +10,11 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
 };
 
 export const Input = ({ label, ...rest }: InputProps): JSX.Element => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
   return (
     <Container>
-      <StyledInput {...rest} />
+      <StyledInput placeholder="" {...rest} ref={inputRef} />
       {label && <label>{label}</label>}
     </Container>
   );

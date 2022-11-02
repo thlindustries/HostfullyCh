@@ -33,6 +33,10 @@ export const Container = styled.div`
   box-shadow: inset 5px 5px 15px -5px rgba(0, 0, 0, 0.4);
   padding: 1rem 0;
   background: ${({ theme }) => theme.colors.primaryBg};
+
+  @media (max-width: 960px) {
+    flex-direction: column;
+  }
 `;
 
 export const HeaderHero = styled.section`
@@ -52,6 +56,12 @@ export const HeaderHero = styled.section`
     border-radius: 4px;
 
     animation: ${goGray} 2s ease-in-out forwards;
+  }
+
+  @media (max-width: 960px) {
+    width: 100%;
+    height: 30%;
+    padding: 0 1rem;
   }
 
   @media (max-width: 690px) {
@@ -105,6 +115,11 @@ export const BodyContent = styled.section`
 
   width: 50%;
   height: 100%;
+
+  @media (max-width: 960px) {
+    width: 100%;
+    height: 50%;
+  }
 `;
 
 export const ImagesContainer = styled.div`
@@ -140,6 +155,25 @@ export const ImagesContainer = styled.div`
 
     padding: 1rem;
   }
+
+  @media (max-width: 960px) {
+    flex-direction: row-reverse;
+    padding: 1rem;
+    .img-thumb-container {
+      width: 60%;
+      height: 100%;
+    }
+    .images-list-container {
+      width: 40%;
+    }
+  }
+  /* 
+  @media (max-width: 790px) {
+    .images-list-container {
+      flex-wrap: nowrap;
+      flex-direction: column;
+    }
+  } */
 `;
 
 export const ImgSelectCard = styled.div<ImgSelectCardProps>`
@@ -171,6 +205,14 @@ export const ImgSelectCard = styled.div<ImgSelectCardProps>`
     cursor: pointer;
     opacity: 0.6;
   }
+
+  @media (max-width: 790px) {
+    & + & {
+      margin: 0;
+
+      margin-bottom: 1rem;
+    }
+  }
 `;
 
 export const Info = styled.div`
@@ -201,6 +243,10 @@ export const Info = styled.div`
     > p {
       font-size: 0.825rem;
     }
+  }
+
+  @media (max-width: 960px) {
+    height: 100%;
   }
 `;
 

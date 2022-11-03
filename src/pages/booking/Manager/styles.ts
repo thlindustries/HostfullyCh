@@ -1,10 +1,22 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 import bgImage from 'assets/images/manager-bg.webp';
 
 interface TripsRowProps {
   isLoading?: boolean;
 }
+
+const alertAnimation = keyframes`
+  0% {
+    background-color: #e45657;
+  }
+  50% {
+    background-color: #fff;
+  }
+  100%{
+    background-color: #e45657;
+  }
+`;
 
 export const Container = styled.div`
   width: 100%;
@@ -68,8 +80,20 @@ export const TripsRow = styled.div`
     border: solid 1px ${({ theme }) => theme.colors.primaryTextColor};
     color: ${({ theme }) => theme.colors.colorWhite};
     padding: 0.25rem;
-
     font-size: 0.825rem;
+
+    min-height: 40px;
+  }
+
+  input {
+    width: 100%;
+    padding: 0 0.5rem;
+    margin: 0;
+
+    background-color: ${({ theme }) => theme.colors.colorPrimary};
+    color: ${({ theme }) => theme.colors.primaryTextColor};
+
+    animation: ${alertAnimation} 1s ease-in forwards;
   }
 
   button {

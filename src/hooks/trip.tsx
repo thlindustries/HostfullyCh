@@ -211,7 +211,11 @@ export const TripProvider = ({ children }: TripProviderProps): JSX.Element => {
     data: Record<any, any>,
   ): Promise<void> => {
     setIsLoading(true);
-    await api.patch(`/bookedTrips/${trip.id}`, data);
+    try {
+      await api.patch(`/bookedTrips/${trip.id}`, data);
+    } catch (err) {
+      console.log(err);
+    }
     setIsLoading(false);
   };
 

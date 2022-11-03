@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { HeaderItems } from '../ExpandedMenu';
 
@@ -17,6 +17,13 @@ export const HamburguerMenu = ({
   color,
   toggleMenu,
 }: HamburguerMenuProps): JSX.Element => {
+  const navigate = useNavigate();
+
+  const handleNavigate = (link: string): void => {
+    toggleMenu();
+    navigate(link)
+  }
+
   return (
     <MenuContainer>
       <StyledBurger open={isOpen} onClick={toggleMenu} color={color}>
@@ -26,10 +33,10 @@ export const HamburguerMenu = ({
       </StyledBurger>
       <StyledMenu open={isOpen}>
         {headerItems.map((item) => (
-          <NavLink to={item.link} key={item.text} end>
+          <span key={item.text} onClick={()=>handleNavigate(item.link)}>
             {item.icon}
             {item.text}
-          </NavLink>
+          </span>
         ))}
       </StyledMenu>
     </MenuContainer>

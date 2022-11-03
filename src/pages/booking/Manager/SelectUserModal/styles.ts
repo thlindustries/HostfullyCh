@@ -40,4 +40,17 @@ export const Container = styled.div`
       width: 40%;
     }
   }
+
+  @media(max-width: 780px) {
+    width: 80%;
+    height: 20%;
+
+    .m-title {
+      width: 80%;
+    }
+
+    .btns-container {
+      width: 100%;
+    }
+  }
 `;

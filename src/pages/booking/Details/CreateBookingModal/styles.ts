@@ -39,6 +39,11 @@ export const Container = styled.div`
       font-weight: bold;
     }
   }
+
+  @media (max-width: 780px){
+    width: 80%;
+    height: 80%;
+  }
 `;
 
 export const CloseBtn = styled.div`

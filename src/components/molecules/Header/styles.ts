@@ -84,16 +84,24 @@ export const LogoContainer = styled.div`
 `;
 
 export const UserInfoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   color: ${({ theme }) => theme.colors.colorPrimary};
   font-weight: bold;
-  width: 50%;
+  width: fit-content;
 
-  margin-left: -6rem;
+  margin-left: -10rem;
 
   transition: opacity 0.2s;
   &:hover {
     cursor: pointer;
     opacity: 0.6;
+  }
+
+  @media(max-width: 650px){
+    display: none;
   }
 `;
 

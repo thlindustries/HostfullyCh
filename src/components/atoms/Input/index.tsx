@@ -19,7 +19,7 @@ export const Input = ({
 
   return (
     <Container containerWidth={containerWidth}>
-      <StyledInput placeholder="" {...rest} ref={inputRef} />
+      <StyledInput {...rest} ref={inputRef} />
       {label && <label>{label}</label>}
     </Container>
   );

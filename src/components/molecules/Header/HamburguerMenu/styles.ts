@@ -34,7 +34,7 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
 
   min-width: 630px;
 
-  a {
+  span {
     display: flex;
     align-items: center;
     padding: 2rem 0;
@@ -62,6 +62,7 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
     }
 
     &:hover {
+      cursor: pointer;
       &,
       svg {
         color: ${({ theme }) => theme.colors.colorPrimary};

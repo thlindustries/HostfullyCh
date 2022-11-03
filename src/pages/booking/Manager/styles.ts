@@ -44,6 +44,10 @@ export const ManagerTable = styled.div`
 
   background-color: ${({ theme }) => theme.colors.primaryBg};
   box-shadow: inset 0 0 5px 5px rgba(0, 0, 0, 0.4);
+
+  @media (max-width: 780px) {
+    width: 100%;
+  }
 `;
 
 export const TripsTableContainer = styled.div<TripsRowProps>`
@@ -123,6 +127,7 @@ export const TripsRow = styled.div`
   }
 
   @media (max-width: 760px) {
+    padding: 0.5rem;
     p {
       font-size: 0.625rem;
     }

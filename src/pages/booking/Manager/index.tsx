@@ -21,7 +21,10 @@ export const BookingManager = (): JSX.Element => {
     age: '',
     lastName: '',
   });
-  const [isEditting, setIsEditting] = useState(false);
+  const [isEditting, setIsEditting] = useState({
+    id: '',
+    state: false,
+  });
 
   const { userName, isLoading, deleteBooking, updateBooking, getBookedTrips } =
     useTrip();
@@ -54,7 +57,10 @@ export const BookingManager = (): JSX.Element => {
       });
     }
 
-    setIsEditting(false);
+    setIsEditting({
+      id: trip.id,
+      state: false
+    });
   };
 
   const handleDelete = (trip: BookedTrip): void => {
@@ -71,8 +77,8 @@ export const BookingManager = (): JSX.Element => {
 
   const userTrips = bookedTrips?.filter((trip) => trip.name === userName);
 
-  const getRowElement = (children: string, elementId: string): JSX.Element => {
-    if (isEditting)
+  const getRowElement = (children: string, elementId: string, tripId:string): JSX.Element => {
+    if (isEditting.state && tripId === isEditting.id)
       return (
         <input
           onChange={(e) =>
@@ -115,16 +121,16 @@ export const BookingManager = (): JSX.Element => {
                   <TripsRow key={trip.id}>
                     <p className="id"> {trip.id}</p>
                     <p>{trip.name}</p>
-                    <>{getRowElement(trip.lastName, 'lastName')}</>
-                    <>{getRowElement(trip.age, 'age')}</>
+                    <>{getRowElement(trip.lastName, 'lastName', trip.id)}</>
+                    <>{getRowElement(trip.age, 'age', trip.id)}</>
                     <p>{new Date(trip.from).toDateString()}</p>
                     <p>{new Date(trip.to).toDateString()}</p>
-                    {isEditting ? (
+                    {(isEditting.state && isEditting.id === trip.id)  ? (
                       <button type="button" onClick={() => handleEdit(trip)}>
                         <AiFillCheckSquare className="edit" size={32} />
                       </button>
                     ) : (
-                      <button type="button" onClick={() => setIsEditting(true)}>
+                      <button type="button" onClick={() => setIsEditting({id:trip.id, state: true})}>
                         <AiFillEdit className="edit" size={22} />
                       </button>
                     )}

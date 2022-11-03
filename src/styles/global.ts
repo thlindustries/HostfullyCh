@@ -31,20 +31,6 @@ export default createGlobalStyle`
     scroll-behavior: smooth;
   }
 
-  &::-webkit-scrollbar {
-      display: unset;
-  }
-  &::-webkit-scrollbar {
-    width: 4px !important;
-  }
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: ${(props) => props.theme.colors.colorPrimary};
-    border-radius: 8px;
-  }
-
   h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
   }

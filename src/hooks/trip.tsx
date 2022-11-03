@@ -1,11 +1,15 @@
 import { createContext, useState, useContext } from 'react';
 import { toast } from 'react-toastify';
+
 import { api } from 'services/api';
 
 interface TripContextData {
   isLoading: boolean;
   userName: string;
+  deleteBooking: (trip: BookedTrip) => Promise<void>;
+  updateBooking: (trip: BookedTrip, data: Record<any, any>) => Promise<void>;
   setUserName: (name: string) => void;
+  getBookedTrips: () => Promise<BookedTrip[]>;
   getRouteDetails: (routeId: string) => Promise<RouteDetailsDTO>;
   getRouteAvailability: (routeId: string) => Promise<RouteAvailabilityDTO>;
   createBooking: (
@@ -15,6 +19,16 @@ interface TripContextData {
     routeAvailability: RouteAvailabilityDTO,
   ) => Promise<{ status: number }>;
 }
+
+export type BookedTrip = {
+  name: string;
+  lastName: string;
+  age: string;
+  id: string;
+  parentTripId: string;
+  from: string;
+  to: string;
+};
 
 type TripProviderProps = {
   children: React.ReactNode;
@@ -63,12 +77,18 @@ export const TripProvider = ({ children }: TripProviderProps): JSX.Element => {
     const response = await api.get<RouteDetailsDTO>(`/booking/${routeId}`);
     return response.data;
   };
+
   const getRouteAvailability = async (
     routeId: string,
   ): Promise<RouteAvailabilityDTO> => {
     const response = await api.get<RouteAvailabilityDTO>(
       `/tripsAvailability/${routeId}`,
     );
+    return response.data;
+  };
+
+  const getBookedTrips = async (): Promise<BookedTrip[]> => {
+    const response = await api.get<BookedTrip[]>(`/bookedTrips`);
     return response.data;
   };
 
@@ -99,10 +119,10 @@ export const TripProvider = ({ children }: TripProviderProps): JSX.Element => {
     const oldAvailability = await api.get<RouteAvailabilityDTO>(
       `/tripsAvailability/${routeId}`,
     );
+    setIsLoading(false);
 
     if (!oldAvailability) {
       toast.error('Oops, something went wrong, try again :(');
-      setIsLoading(false);
       return { status: 500 };
     }
 
@@ -125,24 +145,88 @@ export const TripProvider = ({ children }: TripProviderProps): JSX.Element => {
     updatedTrip.available = false;
 
     setIsLoading(true);
-    const response = await api.patch(
-      `/tripsAvailability/${routeId}`,
-      udpatedRouteAvailability,
-    );
+    try {
+      await api.patch(
+        `/tripsAvailability/${routeId}`,
+        udpatedRouteAvailability,
+      );
+    } catch (err) {
+      console.log(err);
+      setIsLoading(false);
+      return { status: 500 };
+    }
+
+    const response = await api.post('/bookedTrips', {
+      name: data.name,
+      lastName: data.lastName,
+      age: data.age,
+      from: updatedTrip.from,
+      to: updatedTrip.to,
+      id: tripId,
+      parentTripId: routeId,
+    });
+
     setIsLoading(false);
 
     return { status: response.status };
+  };
+
+  const deleteBooking = async (trip: BookedTrip): Promise<void> => {
+    setIsLoading(true);
+    /** Observations:
+     *
+     * Of course this isn't the right way to delete something but I think that
+     * this is enough to this test, it's just a way to make things work
+     *
+     * As I'm using JSON-server and not a structured back-end I'm building this type of
+     * work-arround just to make easier to show you things happening :D
+     */
+
+    try {
+      await api.delete(`/bookedTrips/${trip.id}`);
+      const availability = await api.get<RouteAvailabilityDTO>(
+        `/tripsAvailability/${trip.parentTripId}`,
+      );
+      const updatedAvailability = { ...availability.data };
+      const updatedTrip = updatedAvailability.availablePeriods.find(
+        (i) => i.id === trip.id,
+      );
+      if (updatedTrip) {
+        updatedTrip.available = true;
+
+        await api.patch(
+          `/tripsAvailability/${trip.parentTripId}`,
+          updatedAvailability,
+        );
+      }
+    } catch (err) {
+      console.log(err);
+    }
+
+    setIsLoading(false);
+  };
+
+  const updateBooking = async (
+    trip: BookedTrip,
+    data: Record<any, any>,
+  ): Promise<void> => {
+    setIsLoading(true);
+    await api.patch(`/bookedTrips/${trip.id}`, data);
+    setIsLoading(false);
   };
 
   return (
     <TripContext.Provider
       value={{
         isLoading,
+        userName,
+        deleteBooking,
+        updateBooking,
         setUserName: handleSetUserName,
+        getBookedTrips,
         createBooking,
         getRouteAvailability,
         getRouteDetails,
-        userName,
       }}
     >
       {children}

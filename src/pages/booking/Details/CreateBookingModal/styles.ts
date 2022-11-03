@@ -31,6 +31,10 @@ export const Container = styled.div`
 
     border-radius: 4px;
 
+    input {
+      width: 100%;
+    }
+
     span {
       font-weight: bold;
     }
@@ -82,6 +86,7 @@ export const BookingDates = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   margin-bottom: auto;
+  width: 100%;
 `;
 
 export const AvailabilityRow = styled.div<AvailabilityRowProps>`

@@ -1,6 +1,8 @@
 import { useRef } from 'react';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 
+import { useTrip } from 'hooks/trip';
+
 import { RouteAvailabilityDTO } from 'pages/booking/Details';
 
 import { Input } from 'components/atoms/Input';
@@ -13,7 +15,6 @@ import {
   AvailabilityRow,
   InputsContainer,
 } from './styles';
-import { useTrip } from 'hooks/trip';
 
 type CreateBookingModalProps = {
   selectedTripDate: string;
@@ -74,9 +75,9 @@ export const CreateBookingModal = ({
       </CloseBtn>
       <form ref={formRef} onSubmit={handleSubmit}>
         <InputsContainer>
-          <Input name="name" label="name" />
-          <Input name="lastName" label="last name" />
-          <Input name="age" label="age" />
+          <Input name="name" label="name" containerWidth="100%" />
+          <Input name="lastName" label="last name" containerWidth="100%" />
+          <Input name="age" label="age" containerWidth="100%" />
         </InputsContainer>
         <span>Available Dates</span>
         <BookingDates>

@@ -13,10 +13,12 @@ import { Toggle } from 'components/atoms/Toggle';
 import {
   Container,
   LogoContainer,
+  UserInfoContainer,
   OptionsContainer,
   ThemeChangerContainer,
 } from './styles';
 import { useTheme } from 'hooks/theme';
+import { useTrip } from 'hooks/trip';
 
 const headerItems = [
   {
@@ -46,6 +48,7 @@ export const Header = (): JSX.Element => {
   const navigate = useNavigate();
 
   const { setTheme, selectedTheme } = useTheme();
+  const { userName } = useTrip();
 
   const toggleMenu = (): void => {
     const nextMenuState = !isMenuOpen;
@@ -115,6 +118,9 @@ export const Header = (): JSX.Element => {
         </div>
       </LogoContainer>
       <OptionsContainer collapsed={previousWidth < 1200}>
+        <UserInfoContainer onClick={() => navigate('/booking/list/')}>
+          {userName ? <p>{userName}</p> : <p>Not logged :(</p>}
+        </UserInfoContainer>
         {previousWidth >= 1200 ? (
           <ExpandedMenu headerItems={headerItems} />
         ) : (

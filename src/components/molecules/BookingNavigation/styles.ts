@@ -76,14 +76,82 @@ export const Tab = styled.div<TabProps>`
 
 export const TabContent = styled.div`
   display: flex;
+  flex-direction: column;
 
   align-items: center;
-  padding: 1rem;
+  padding: 2rem 1rem;
 
   width: 100%;
   height: 100%;
 
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
   border-radius: 0 8px 8px 8px;
 
   background-color: ${({ theme }) => theme.colors.secondaryBg};
+`;
+
+export const TabHeader = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+
+  background-color: ${({ theme }) => theme.colors.primaryBg};
+  color: ${({ theme }) => theme.colors.primaryTextColor};
+
+  p {
+    border: solid 1px ${({ theme }) => theme.colors.primaryTextColor};
+    padding: 0.25rem;
+  }
+`;
+
+export const TabRows = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+`;
+
+export const TripRow = styled.div`
+  width: 100%;
+  margin-bottom: 0.5rem;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  font-size: 0.8rem;
+
+  p {
+    padding: 0.5rem;
+
+    &:nth-child(odd) {
+      background-color: ${({ theme }) => theme.colors.colorGray250};
+      color: ${({ theme }) =>
+        theme.name === 'dark'
+          ? theme.colors.secondaryTextColor
+          : theme.colors.colorGray350};
+    }
+
+    &:nth-child(even) {
+      background-color: ${({ theme }) => theme.colors.colorGray300};
+      color: ${({ theme }) => theme.colors.secondaryTextColor};
+    }
+  }
 `;

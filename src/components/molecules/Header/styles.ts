@@ -83,6 +83,20 @@ export const LogoContainer = styled.div`
   }
 `;
 
+export const UserInfoContainer = styled.div`
+  color: ${({ theme }) => theme.colors.colorPrimary};
+  font-weight: bold;
+  width: 50%;
+
+  margin-left: -6rem;
+
+  transition: opacity 0.2s;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.6;
+  }
+`;
+
 export const OptionsContainer = styled.div<OptionsContainerProps>`
   display: flex;
   width: ${({ collapsed }) => (collapsed ? 'auto' : '25%')};

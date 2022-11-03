@@ -69,7 +69,6 @@ export const BookingDetails = (): JSX.Element => {
     },
   );
 
-  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   const { data: routeAvailability } = useQuery<RouteAvailabilityDTO>(
     [`routeAvailability-${routeId}`],
     async () => await getRouteAvailability(routeId),
@@ -90,10 +89,11 @@ export const BookingDetails = (): JSX.Element => {
       routeAvailability,
     );
 
-    if (response.status !== 200) {
+    if (response.status === 200 || response.status === 201) {
+      toast.success('Ohh Yeah, your trip is booked, hope you like :D');
+    } else {
       toast.error('Oops, something went wrong, try again :(');
     }
-    toast.success('Ohh Yeah, your trip is booked, hope you like :D');
     setUserName(data.name);
     setShowModal(false);
     setSelectedTripDate('');

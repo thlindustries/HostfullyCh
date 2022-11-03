@@ -7,13 +7,18 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   warning?: string;
   className?: string;
   label?: string;
+  containerWidth?: string;
 };
 
-export const Input = ({ label, ...rest }: InputProps): JSX.Element => {
+export const Input = ({
+  label,
+  containerWidth = '',
+  ...rest
+}: InputProps): JSX.Element => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <Container>
+    <Container containerWidth={containerWidth}>
       <StyledInput placeholder="" {...rest} ref={inputRef} />
       {label && <label>{label}</label>}
     </Container>

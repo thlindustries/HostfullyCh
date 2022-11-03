@@ -1,8 +1,18 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+interface ContainerProps {
+  containerWidth: string;
+}
+
+export const Container = styled.div<ContainerProps>`
   position: relative;
-  width: 100%;
+
+  ${({ containerWidth }) =>
+    containerWidth
+      ? css`
+          width: ${containerWidth};
+        `
+      : null};
 
   label {
     position: absolute;

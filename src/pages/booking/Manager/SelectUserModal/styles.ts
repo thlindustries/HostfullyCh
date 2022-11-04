@@ -41,7 +41,7 @@ export const Container = styled.div`
     }
   }
 
-  @media(max-width: 780px) {
+  @media (max-width: 780px) {
     width: 80%;
     height: 20%;
 
@@ -51,6 +51,17 @@ export const Container = styled.div`
 
     .btns-container {
       width: 100%;
+    }
+  }
+
+  @media (max-height: 600px) {
+    width: 40%;
+    font-size: 0.675rem;
+    input {
+      height: 50%;
+    }
+    button {
+      height: 60%;
     }
   }
 `;

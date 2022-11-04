@@ -59,7 +59,7 @@ export const BookingManager = (): JSX.Element => {
 
     setIsEditting({
       id: trip.id,
-      state: false
+      state: false,
     });
   };
 
@@ -77,7 +77,11 @@ export const BookingManager = (): JSX.Element => {
 
   const userTrips = bookedTrips?.filter((trip) => trip.name === userName);
 
-  const getRowElement = (children: string, elementId: string, tripId:string): JSX.Element => {
+  const getRowElement = (
+    children: string,
+    elementId: string,
+    tripId: string,
+  ): JSX.Element => {
     if (isEditting.state && tripId === isEditting.id)
       return (
         <input
@@ -125,12 +129,17 @@ export const BookingManager = (): JSX.Element => {
                     <>{getRowElement(trip.age, 'age', trip.id)}</>
                     <p>{new Date(trip.from).toDateString()}</p>
                     <p>{new Date(trip.to).toDateString()}</p>
-                    {(isEditting.state && isEditting.id === trip.id)  ? (
+                    {isEditting.state && isEditting.id === trip.id ? (
                       <button type="button" onClick={() => handleEdit(trip)}>
                         <AiFillCheckSquare className="edit" size={32} />
                       </button>
                     ) : (
-                      <button type="button" onClick={() => setIsEditting({id:trip.id, state: true})}>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setIsEditting({ id: trip.id, state: true })
+                        }
+                      >
                         <AiFillEdit className="edit" size={22} />
                       </button>
                     )}

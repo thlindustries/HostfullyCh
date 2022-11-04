@@ -91,6 +91,10 @@ export const TripsRow = styled.div`
 
   input {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     padding: 0 0.5rem;
     margin: 0;
 

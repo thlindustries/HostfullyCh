@@ -44,6 +44,10 @@ export const BookingNavigationContainer = styled.div`
 
   opacity: 1;
 
+  @media (max-height: 680px) {
+    margin-top: -140px;
+  }
+
   @media (max-width: 630px) {
     border: none;
   }
@@ -71,4 +75,9 @@ export const PopularRoutesContainer = styled.div`
   height: 75%;
 
   margin-top: 4rem;
+
+  @media (max-height: 680px) {
+    overflow-y: auto;
+    margin-top: 6rem;
+  }
 `;

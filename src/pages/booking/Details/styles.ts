@@ -106,6 +106,12 @@ export const BookingBtnContainer = styled.div`
     justify-content: space-evenly;
     align-items: center;
   }
+
+  @media (max-width: 600px) {
+    h3 {
+      display: none;
+    }
+  }
 `;
 
 export const BodyContent = styled.section`
@@ -147,13 +153,10 @@ export const ImagesContainer = styled.div`
     flex-wrap: wrap;
     width: fit-content;
     width: 100%;
-    height: 180px;
-    row-gap: 1rem;
+    height: 30%;
     overflow-x: auto;
 
-    margin-top: 1.5rem;
-
-    padding: 1rem;
+    margin-top: 1rem;
   }
 
   @media (max-width: 960px) {
@@ -165,21 +168,16 @@ export const ImagesContainer = styled.div`
     }
     .images-list-container {
       width: 40%;
+      height: 100%;
+      margin-top: 0;
     }
   }
-  /* 
-  @media (max-width: 790px) {
-    .images-list-container {
-      flex-wrap: nowrap;
-      flex-direction: column;
-    }
-  } */
 `;
 
 export const ImgSelectCard = styled.div<ImgSelectCardProps>`
   border-radius: 8px;
-  width: 120px;
-  height: 100px;
+  width: 80px;
+  height: 60px;
 
   & + & {
     margin-left: 1rem;
@@ -204,6 +202,11 @@ export const ImgSelectCard = styled.div<ImgSelectCardProps>`
   &:hover {
     cursor: pointer;
     opacity: 0.6;
+  }
+
+  @media (max-width: 960px) {
+    width: 68px;
+    height: 54px;
   }
 
   @media (max-width: 790px) {
@@ -242,6 +245,9 @@ export const Info = styled.div`
 
     > p {
       font-size: 0.825rem;
+      line-height: 1.1rem;
+
+      overflow-y: auto;
     }
   }
 
@@ -286,6 +292,7 @@ export const Comments = styled.div`
     }
     p {
       font-size: 0.725rem;
+      line-height: 0.875rem;
     }
   }
 `;

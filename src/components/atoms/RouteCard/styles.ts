@@ -39,16 +39,11 @@ export const Container = styled.div`
       margin-right: 0.5rem;
     }
 
-    .price {
+    .price-container {
       display: flex;
       align-items: center;
 
-      *.old-price {
-        text-decoration: line-through;
-        font-size: 0.625rem;
-      }
-
-      p:not(.old-price) {
+      p {
         font-size: 1rem;
         padding: 0.25rem;
         background-color: ${({ theme }) => theme.colors.colorPrimary};
@@ -56,6 +51,27 @@ export const Container = styled.div`
         font-weight: bold;
         border-radius: 4px;
         margin-left: 1rem;
+      }
+    }
+
+    .price {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+          margin-left: 0.15rem;
+        }
+      }
+
+      *.old-price {
+        text-decoration: line-through;
+        font-size: 0.625rem;
       }
     }
   }
@@ -66,6 +82,21 @@ export const Container = styled.div`
     transform: scale(1.05);
 
     box-shadow: 25px 10px 15px -5px rgba(0, 0, 0, 0.4);
+  }
+
+  @media (max-height: 680px) {
+    height: 80%;
+    width: 60%;
+    border-radius: 4px;
+    margin: 0.5rem;
+    overflow-y: auto;
+
+    .info {
+      padding: 0.5rem;
+    }
+    p {
+      font-size: 0.725rem !important;
+    }
   }
 
   @media (max-width: 1300px) {

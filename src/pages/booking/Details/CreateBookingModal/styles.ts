@@ -23,6 +23,7 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    overflow-y: auto;
 
     background-color: ${({ theme }) => theme.colors.primaryBg};
     width: 100%;
@@ -40,7 +41,7 @@ export const Container = styled.div`
     }
   }
 
-  @media (max-width: 780px){
+  @media (max-width: 780px) {
     width: 80%;
     height: 80%;
   }
@@ -87,7 +88,6 @@ export const CloseBtn = styled.div`
 export const BookingDates = styled.div`
   display: flex;
   flex-direction: column;
-  height: 35%;
   overflow-y: auto;
   overflow-x: hidden;
   margin-bottom: auto;
@@ -144,7 +144,6 @@ export const InputsContainer = styled.div`
   flex-direction: column;
   align-items: center;
   height: fit-content;
-  max-height: 40%;
   width: 100%;
   margin-top: 1rem;
 

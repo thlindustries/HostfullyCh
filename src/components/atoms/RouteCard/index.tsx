@@ -38,10 +38,13 @@ export const RouteCard = ({ route, onClick }: RouteCardProps): JSX.Element => {
       </div>
       <div className="info">
         <h3>{name}</h3>
-        <small>From</small>
-        <div className="price">
-          <p className="old-price">{converNumberToBRL(price.from)}</p>
-          <AiOutlineArrowRight size={12} />
+        <div className="price-container">
+          <div className="price">
+            <small>From</small>
+            <span className="old-price">
+              {converNumberToBRL(price.from)} <AiOutlineArrowRight size={12} />
+            </span>
+          </div>
           <p>{converNumberToBRL(price.to)}</p>
         </div>
       </div>

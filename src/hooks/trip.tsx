@@ -64,12 +64,12 @@ const TripContext = createContext<TripContextData>({} as TripContextData);
 export const TripProvider = ({ children }: TripProviderProps): JSX.Element => {
   const [isLoading, setIsLoading] = useState(false);
   const [userName, setUserName] = useState(() => {
-    const name = localStorage.getItem('@hostfully:username');
+    const name = localStorage.getItem('@thlbooking:username');
     return name ?? '';
   });
 
   const handleSetUserName = (name: string): void => {
-    localStorage.setItem('@hostfully:username', name);
+    localStorage.setItem('@thlbooking:username', name);
     setUserName(name);
   };
 

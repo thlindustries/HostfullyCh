@@ -22,7 +22,7 @@ export const ThemeCustomizationProvider = ({
   children,
 }: ThemeCustomizationProviderProps): JSX.Element => {
   const [selectedTheme, setSelectedTheme] = useState<DefaultTheme>(() => {
-    const savedTheme = localStorage.getItem('@hostfully:theme');
+    const savedTheme = localStorage.getItem('@thlbooking:theme');
     if (savedTheme) {
       return JSON.parse(savedTheme);
     }
@@ -41,11 +41,11 @@ export const ThemeCustomizationProvider = ({
   };
 
   const saveCustomTheme = (): void => {
-    localStorage.setItem('@hostfully:theme', JSON.stringify(selectedTheme));
+    localStorage.setItem('@thlbooking:theme', JSON.stringify(selectedTheme));
   };
 
   const resetTheme = (): void => {
-    localStorage.removeItem('@hostfully:theme');
+    localStorage.removeItem('@thlbooking:theme');
   };
 
   const setTheme = (themeName: string): void => {
@@ -61,7 +61,7 @@ export const ThemeCustomizationProvider = ({
     }
 
     setSelectedTheme(updatedTheme);
-    localStorage.setItem('@hostfully:theme', JSON.stringify(updatedTheme));
+    localStorage.setItem('@thlbooking:theme', JSON.stringify(updatedTheme));
   };
 
   return (

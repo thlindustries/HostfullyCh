@@ -113,7 +113,7 @@ export const Header = (): JSX.Element => {
       <LogoContainer onClick={() => navigate('/')}>
         <MdFlightTakeoff size={32} />
         <div className="body">
-          <p>Hostfully Booking</p>
+          <p>THL Booking</p>
           <span>Book your trip in instants</span>
         </div>
       </LogoContainer>

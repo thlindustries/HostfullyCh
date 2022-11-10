@@ -1,5 +1,5 @@
 import Axios from 'axios';
 
 export const api = Axios.create({
-  baseURL: 'https://hostfullyback.herokuapp.com/',
+  baseURL: 'https://thlbooking.herokuapp.com/',
 });

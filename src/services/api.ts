@@ -1,5 +1,5 @@
 import Axios from 'axios';
 
 export const api = Axios.create({
-  baseURL: 'https://pomodoro.thlinc.com/api/booking',
+  baseURL: 'https://pomodoro.thlinc.com/api',
 });
